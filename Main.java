@@ -1,33 +1,63 @@
 
 /**
- * Write a description of class Main here.
+ * This is my main class
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Cristina
+ * @version 2/5/2019
  */
-public class Main
-{
-    // instance variables - replace the example below with your own
-    private int x;
 
-    /**
-     * Constructor for objects of class Main
-     */
-    public Main()
-    {
-        // initialise instance variables
-        x = 0;
-    }
+import java.util.Scanner; 
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+public class Main{
+    
+    public static void main(String[] args) {
+        
+        int correctAnswer = (int) (Math.random() *10);
+        System.out.println("******* The MyStErY NuMbEr is ********");
+        System.out.println(correctAnswer);
+        System.out.println("**************************************");
+       
+        int totalGuesses = 0;
+        Scanner myScanner = new Scanner(System.in);
+        int userInput;
+        int previousAnswer = 0;
+        System.out.println("Please choose a number between 1 and 10");
+        userInput = myScanner.nextInt();
+        boolean myBoolean = false;
+        
+        
+        while (myBoolean == false) {
+        
+        if(userInput > correctAnswer) {
+            System.out.println("Too Large");
+            
+            totalGuesses = (userInput==previousAnswer) ? totalGuesses : (totalGuesses += 1);
+            System.out.println("Your total incorrect guesses : " + totalGuesses);
+            
+            previousAnswer = userInput;
+            
+            userInput = myScanner.nextInt();
+        } else if(userInput < correctAnswer) {
+            System.out.println("Too Small");
+           
+            totalGuesses = (userInput==previousAnswer) ? totalGuesses : (totalGuesses += 1);
+            System.out.println("Your total incorrect guesses are:" + totalGuesses);
+            
+            previousAnswer = userInput;
+            
+            userInput = myScanner.nextInt();
+        } else if(userInput == correctAnswer){
+            System.out.println("Correct Guess!");
+            myBoolean = true;
+            
+            System.out.println("Your total incorrect guesses are: " + totalGuesses);
+            
+        }
+    
     }
+}
+        
+        
+    
+
 }
